@@ -19,7 +19,7 @@ def main():
     # TODO: issue the request with a data parameter to use POST
    
     print("Result code: {0}".format(result.status))
-    print("Returned data: ----------------------")
+    print("Returned data: -------------d---------")
     print(result.read().decode("utf-8"))
 
 
