@@ -1,30 +1,27 @@
 import json
 
 try:
-    f = open("date.txt", 'r')
+    f = open("data.txt", 'r')
     data = json.load(f)
 except:  #JSONDecodeError as err:print("erroer in json file")  print(err.msg)
     data = [] # except FileExistsError as err:print("Opss!! something gone wrong")     print(err.msg)
 def input_int():
     number = int(input("Jokes number to view :"))
-    for item in data[:number]:
-        if int(item) == number-1:
-            print(f"{item['setup']}")
-            print(f"{item['punchline']}")
-            if item['laugh'] == 0 and item['groans'] == 0:
-                print("jokes is not rated at")
-                break
-
+    for k, v in enumerate(data):
+        if k==number-1:
+            print(f"   {v['setup']}")
+            print(f"    {v['punchline']}")
+            if v['laugh'] == 0 and v['groans'] == 0:
+                print("joke is not rated  ")
             else:
-                print(f"Laugh : {item['laugh']} groans:{item['groans']} ")
-                break
+                print(f"{v['laugh']} {v['groans']}")
         else:
-            print("Joke number is not in the list out of bound")
+            print("joke number is  out of bound")
             break
 def del_jokes():
     del_num = int(input("joke number to delete:"))
-    for item in data:
-        if item == del_num - 1:
+    for k,v in enumerate(data):
+        if k == del_num - 1:
             data.__delitem__(del_num - 1)
             sav_data(data)
     
@@ -53,7 +50,7 @@ def input_something():
 
   
 def sav_data(data_list):
-    f = open("date.txt", 'w')
+    f = open("data.txt", 'w')
     json_str = json.dumps(data_list)
     f.write(json_str)
     f.close()
